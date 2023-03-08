@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AppViewer from "./components/AppViewer";
+import { GlobalStyle } from "./styles";
+
+export function getLanguageText() {
+  fetch("./language-list.json", {
+    headers: {
+      Accept: "application/json"
+    }
+  }).then(res => res.json()).then(res => localStorage.setItem("language", JSON.stringify(res)));
+}
+
+function changeLocale(text: string) {
+  localStorage.setItem("locale", JSON.stringify({locale: text}));
+  window.open("/", "_self");
+}
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GlobalStyle />
+      <AppViewer></AppViewer>
     </div>
   );
 }

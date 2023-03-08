@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Agrofin",
+  "name": "Um aplicativo financeiro para agricultores.",
   "icons": [
     {
       "src": "favicon.ico",

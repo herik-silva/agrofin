@@ -1,0 +1,26 @@
+{
+    "ptBR": {
+        "navigation": {
+            "homeText": "Casa",
+            "recordsText": "Registros",
+            "settingsText": "Configurações"
+        },
+        "ballance": {
+            "currentBallance": "Saldo Atual",
+            "income": "Receitas",
+            "expanse": "Despesas"
+        }
+    },
+    "enUS": {
+        "navigation": {
+            "homeText": "Home",
+            "recordsText": "Records",
+            "settingsText": "Settings"
+        },
+        "ballance": {
+            "currentBallance": "Current Balance",
+            "income": "Income",
+            "expanse": "Expense"
+        }
+    }
+}

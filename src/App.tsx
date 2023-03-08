@@ -15,6 +15,7 @@ function changeLocale(text: string) {
 }
 
 function App() {
+  getLanguageText();
   
   return (
     <div>

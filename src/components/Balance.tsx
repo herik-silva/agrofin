@@ -1,21 +1,17 @@
 import Container from "@mui/material/Container";
 import { Component, ReactNode } from "react";
-import { SpanM, FlexDivColumn, FlexDivRow } from "../styles"
+import { FlexDivColumn, FlexDivRow, StyledDivisor } from "../styles"
 import InfoCard from "./InfoCard";
 import { settings } from "../settings";
 import { AppTextTranslator } from "../language";
+import MonetaryValue from "./MonetaryValue";
 
-type BallanceProps = { currentBalance: number, income: number, expenses: number };
+type BalanceProps = { currentBalance: number, income: number, expenses: number };
 
-class Ballance extends Component<BallanceProps> {
-    constructor(props: BallanceProps){
+class Balance extends Component<BalanceProps> {
+    constructor(props: BalanceProps){
         super(props);
 
-    }
-
-    prepareValue(value: number): string {
-        const precisionValue = value.toFixed(2);
-        return precisionValue.replace(".", ",");
     }
 
     render(): ReactNode {
@@ -23,25 +19,25 @@ class Ballance extends Component<BallanceProps> {
         const language = JSON.parse(languageStringify)[settings.language] as AppTextTranslator;
 
         return (
-            <div>
+            <StyledDivisor>
                 <Container maxWidth="sm">
                     <FlexDivColumn alignItems="center">
-                        <span>{ language.ballance.currentBallance }</span>
-                        <SpanM>R$ {this.prepareValue(this.props.currentBalance)}</SpanM>
+                        <span>{ language.balance.currentBalanceText }</span>
+                        <MonetaryValue value={this.props.currentBalance} spanSize="M"></MonetaryValue>
                     </FlexDivColumn>
 
                     <FlexDivRow justifyContent="space-between">
                         <FlexDivColumn>
-                            <InfoCard type="POSITIVE" value={this.prepareValue(this.props.income)}></InfoCard>
+                            <InfoCard type="POSITIVE" value={this.props.income}></InfoCard>
                         </FlexDivColumn>
                         <FlexDivColumn>
-                            <InfoCard type="NEGATIVE" value={this.prepareValue(this.props.expenses)}></InfoCard>
+                            <InfoCard type="NEGATIVE" value={this.props.expenses}></InfoCard>
                         </FlexDivColumn>
                     </FlexDivRow>
                 </Container>
-            </div>
+            </StyledDivisor>
         );
     }
 }
 
-export default Ballance;
+export default Balance;

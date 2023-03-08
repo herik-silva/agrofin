@@ -8,7 +8,6 @@ export const StyledBottomNavigation = styled(BottomNavigation)`
   background-color: #5DAD5E !important;
 `;
 
-
 export const StyledArrowUp = styled(ArrowUpwardIcon)`
   color: ${POSITIVE_COLOR};
   font-size: 30px !important;
@@ -29,8 +28,8 @@ export const StyledBottomNavigationAction = styled(BottomNavigationAction)`
   }
 `;
 
-export const StyledApp = styled.body`
-    margin: 0 !important;
+export const StyledDivisor = styled.div`
+  border-bottom: 2px solid ${POSITIVE_COLOR};
 `;
 
 export const GlobalStyle = createGlobalStyle`

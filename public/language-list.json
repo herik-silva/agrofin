@@ -5,10 +5,10 @@
             "recordsText": "Registros",
             "settingsText": "Configurações"
         },
-        "ballance": {
-            "currentBallance": "Saldo Atual",
-            "income": "Receitas",
-            "expanse": "Despesas"
+        "balance": {
+            "currentBalanceText": "Saldo Atual",
+            "incomeText": "Receitas",
+            "expanseText": "Despesas"
         }
     },
     "enUS": {
@@ -17,10 +17,10 @@
             "recordsText": "Records",
             "settingsText": "Settings"
         },
-        "ballance": {
-            "currentBallance": "Current Balance",
-            "income": "Income",
-            "expanse": "Expense"
+        "balance": {
+            "currentBalanceText": "Current Balance",
+            "incomeText": "Income",
+            "expanseText": "Expense"
         }
     }
 }

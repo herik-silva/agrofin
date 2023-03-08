@@ -2,8 +2,9 @@ import { Component, ReactNode } from "react";
 import { FlexDivRow, FlexDivColumn, StyledArrowUp, StyledArrowDown } from "../styles";
 import { settings } from "../settings";
 import { AppTextTranslator } from "../language";
+import MonetaryValue from "./MonetaryValue";
 
-type InfoCardProps = {type: "POSITIVE" | "NEGATIVE", value: string};
+type InfoCardProps = {type: "POSITIVE" | "NEGATIVE", value: number};
 
 class InfoCard extends Component<InfoCardProps> {
     text: string;
@@ -18,11 +19,11 @@ class InfoCard extends Component<InfoCardProps> {
         const language = JSON.parse(languageStringify)[settings.language] as AppTextTranslator;
 
         if(this.props.type === "POSITIVE"){
-            this.text = language.ballance.income;
+            this.text = language.balance.incomeText;
             return <StyledArrowUp></StyledArrowUp>
         }
         
-        this.text = language.ballance.expanse;
+        this.text = language.balance.expanseText;
         return <StyledArrowDown></StyledArrowDown>
     }
 
@@ -32,7 +33,7 @@ class InfoCard extends Component<InfoCardProps> {
                 {this.selectArrow()}
                 <FlexDivColumn>
                     <span>{this.text}</span>
-                    <span>R$ {this.props.value}</span>
+                    <MonetaryValue value={this.props.value} spanSize="P"></MonetaryValue>
                 </FlexDivColumn>
             </FlexDivRow>
         );

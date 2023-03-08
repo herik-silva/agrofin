@@ -1,6 +1,6 @@
 import { Component, ReactNode } from "react";
 import Navigation, { NavigationStates } from "./Navigation";
-import Ballance from "./Ballance";
+import Ballance from "./Balance";
 
 type AppViewerStates = { navigation: NavigationStates };
 

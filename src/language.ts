@@ -4,9 +4,9 @@ export interface AppTextTranslator {
         recordsText: string,
         settingsText: string
     },
-    ballance: {
-        currentBallance: string,
-        income: string,
-        expanse: string
+    balance: {
+        currentBalanceText: string,
+        incomeText: string,
+        expanseText: string
     }
 }

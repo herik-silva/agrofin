@@ -1,0 +1,38 @@
+{
+    "ptBR": {
+        "navigation": {
+            "homeText": "Casa",
+            "recordsText": "Registros",
+            "settingsText": "Configurações"
+        },
+        "balance": {
+            "currentBalanceText": "Saldo Atual",
+            "incomeText": "Receitas",
+            "expanseText": "Despesas"
+        },
+        "walletCard": {
+            "ButtonText": "Novo Registro"
+        },
+        "walletManage": {
+            "TypographyText": "Conta Atual"
+        }
+    },
+    "enUS": {
+        "navigation": {
+            "homeText": "Home",
+            "recordsText": "Records",
+            "settingsText": "Settings"
+        },
+        "balance": {
+            "currentBalanceText": "Current Balance",
+            "incomeText": "Income",
+            "expanseText": "Expense"
+        },
+        "walletCard": {
+            "ButtonText": "New Record"
+        },
+        "walletManage": {
+            "TypographyText": "Current Account"
+        }
+    }
+}

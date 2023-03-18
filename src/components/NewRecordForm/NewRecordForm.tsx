@@ -38,7 +38,8 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
 
     handleSubmit(event: SyntheticEvent): void {
         event.preventDefault();
-        const newRecord = new WalletRecord(this.state.description, parseFloat(this.state.value), this.state.recordType, new Date(this.state.date));
+        const newRecord = new WalletRecord(crypto.randomUUID(), this.state.description, parseFloat(this.state.value), this.state.recordType, new Date(this.state.date));
+        
         this.props.outputAddFn(newRecord);
         document.getElementById("close")?.click();
     }
@@ -54,6 +55,7 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
                             startAdornment={<InputAdornment position="start"><DescriptionIcon/></InputAdornment>}
                             value={this.state.description}
                             onChange={(event) => this.setDescription(event.target.value)}
+                            required={true}
                         />
                     </FormControl>
                     <FormControl sx={{ m: 1 }} variant="filled">
@@ -63,6 +65,7 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
                             startAdornment={<InputAdornment position="start">R$</InputAdornment>}
                             value={this.state.value}
                             onChange={(event) => this.setValue(event.target.value)}
+                            required={true}
                         />
                     </FormControl>
                     <FormControl sx={{ m: 1 }} variant="filled">
@@ -72,6 +75,7 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
                             startAdornment={<InputAdornment position="start"></InputAdornment>}
                             value={this.state.date}
                             onChange={(event) => this.setDate(event.target.value)}
+                            required={true}
                         />
                     </FormControl>
                     <FormControl>

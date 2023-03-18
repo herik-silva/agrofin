@@ -3,6 +3,7 @@ import Navigation, { NavigationStates } from "../Navigation/Navigation";
 import { Routes, Route, Link } from "react-router-dom";
 import { Wallet, WalletRecord } from "../../interfaces";
 import HomeView from "../HomeView/HomeView";
+import { Box, Container } from "@mui/material";
 
 type AppViewerStates = { navigation: NavigationStates, wallet: Wallet  };
 
@@ -48,12 +49,14 @@ class AppViewer extends Component<{}, AppViewerStates> {
     }
 
     render(): ReactNode {
-        if(window.innerWidth <= 800){
+        if(window.innerWidth > 0){
             return (
-                <div>
-                    <Navigation value={this.state.navigation.value} onChangeState={this.setNavigationValue}></Navigation>
-                    <HomeView wallet={this.state.wallet} outputNewRecord={this.addNewRecord}></HomeView>
-                </div>
+                <Box sx={{ background: "#F2F2F2" }}>
+                    <Container sx={{ background: "#FFF", padding: "0px !important"}}>
+                        <Navigation value={this.state.navigation.value} onChangeState={this.setNavigationValue}></Navigation>
+                        <HomeView wallet={this.state.wallet} outputNewRecord={this.addNewRecord}></HomeView>
+                    </Container>
+                </Box>
             );
         }
         else{

@@ -5,6 +5,7 @@ import InfoCard from "../InfoCard/InfoCard";
 import { settings } from "../../settings";
 import { AppTextTranslator } from "../../language";
 import MonetaryValue from "../MonetaryValue/MonetaryValue";
+import { Box } from "@mui/material";
 
 type BalanceProps = { currentBalance: number, income: number, expenses: number };
 
@@ -27,12 +28,12 @@ class Balance extends Component<BalanceProps> {
                     </FlexDivColumn>
 
                     <FlexDivRow justifyContent="space-between">
-                        <FlexDivColumn>
+                        <Box sx={{ display: "flex", background: "#f2f2f291", padding: "15px 25px", flexDirection: "column", borderRadius: "5px" }}>
                             <InfoCard type="POSITIVE" value={this.props.income}></InfoCard>
-                        </FlexDivColumn>
-                        <FlexDivColumn>
+                        </Box>
+                        <Box sx={{ display: "flex", background: "#f2f2f291", padding: "15px 25px", flexDirection: "column", borderRadius: "5px" }}>
                             <InfoCard type="NEGATIVE" value={this.props.expenses}></InfoCard>
-                        </FlexDivColumn>
+                        </Box>
                     </FlexDivRow>
                 </Container>
             </StyledDivisor>

@@ -38,10 +38,12 @@ class DialogComponent extends Component<DialogComponentProps, DialogState> {
     };
 
     render(): ReactNode {
+        const fullScreen = window.innerWidth < 960;
         this.props.closeComponent();
+
         return (
             <div>
-                <Dialog fullScreen onClose={this.handleClose} open={this.state.open} TransitionComponent={Transition}>
+                <Dialog fullScreen={fullScreen} onClose={this.handleClose} open={this.state.open} TransitionComponent={Transition}>
                     <AppBar sx={{ position: 'relative', background: "#5DAD5E" }}>
                         <Toolbar>
                             <IconButton

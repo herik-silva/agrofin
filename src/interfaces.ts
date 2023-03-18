@@ -1,12 +1,14 @@
 export type RecordType = "POSITIVE" | "NEGATIVE";
 
 export class WalletRecord {
+    id: string;
     description: string;
     value: number;
     type: RecordType;
     created_at: Date;
 
-    constructor(description: string, value: number, type: RecordType, created_at: Date = new Date()){
+    constructor(id: string, description: string, value: number, type: RecordType, created_at: Date = new Date()){
+        this.id = id;
         this.description = description;
         this.value = value;
         this.type = type;

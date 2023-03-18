@@ -3,8 +3,7 @@ import { StyledArrowUp, StyledArrowDown, StyledCard } from "../../styles";
 import { WalletRecord } from "../../interfaces";
 import Box from "@mui/material/Box";
 import MonetaryValue from "../MonetaryValue/MonetaryValue";
-import IconButton from "@mui/material/IconButton";
-import InfoIcon from '@mui/icons-material/Info';
+import DialogCard from "../DialogCard/DialogCard";
 
 type RecordCardProps = { record: WalletRecord }
 
@@ -29,15 +28,11 @@ class RecordCard extends Component<RecordCardProps> {
                     <Box sx={{width: 50, textAlign: "center"}}>
                         {this.getCardIcon()}
                     </Box>
-                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center" }}>
                         <span>{this.props.record.description}</span>
                         <MonetaryValue spanSize="P" value={this.props.record.value}></MonetaryValue>
                     </Box>
-                    <Box sx={{width: 50, background: "#D6D6D6", height: 80, display: "flex", alignItems: "center", justifyContent: "center"}}>
-                        <IconButton aria-label="Botão de Informação">
-                            <InfoIcon />
-                        </IconButton>
-                    </Box>
+                    <DialogCard record={this.props.record} />
                 </Box>
             </StyledCard>
         );

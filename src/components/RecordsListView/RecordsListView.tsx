@@ -1,3 +1,5 @@
+import "./custom-scroll.css"
+
 import { Component, ReactNode } from "react";
 import { WalletRecord } from "../../interfaces";
 import RecordCard from "../RecordCard/RecordCard";
@@ -20,9 +22,9 @@ class RecordListView extends Component<RecordListViewProps> {
                     <FormatListBulletedIcon sx={{ marginRight: 2 }} />
                     <SpanM>Ultimos Registros</SpanM>
                 </Box>
-                <Box sx={{minHeight: window.innerHeight - 430, maxHeight: window.innerHeight - 430, overflow: "hidden", overflowY: "scroll"}}>
+                <Box className="custom-scroll" sx={{minHeight: window.innerHeight - 450, maxHeight: window.innerHeight - 450, overflow: "hidden", overflowY: "scroll"}}>
                     {this.props.recordList.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()).map((record) => (
-                        <RecordCard record={record}></RecordCard>
+                        <RecordCard key={record.id} record={record}></RecordCard>
                     ))}
                 </Box>
             </Container>

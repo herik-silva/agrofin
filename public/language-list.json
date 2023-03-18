@@ -9,6 +9,12 @@
             "currentBalanceText": "Saldo Atual",
             "incomeText": "Receitas",
             "expanseText": "Despesas"
+        },
+        "walletCard": {
+            "ButtonText": "Novo Registro"
+        },
+        "walletManage": {
+            "TypographyText": "Conta Atual"
         }
     },
     "enUS": {
@@ -21,6 +27,12 @@
             "currentBalanceText": "Current Balance",
             "incomeText": "Income",
             "expanseText": "Expense"
+        },
+        "walletCard": {
+            "ButtonText": "New Record"
+        },
+        "walletManage": {
+            "TypographyText": "Current Account"
         }
     }
 }

@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import { SpanM } from "../styles";
+import { SpanM } from "../../styles";
 
 export type MonetaryValueProps = { value: number, spanSize: "P" | "M" };
 

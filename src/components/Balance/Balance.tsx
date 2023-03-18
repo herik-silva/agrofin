@@ -1,10 +1,10 @@
 import Container from "@mui/material/Container";
 import { Component, ReactNode } from "react";
-import { FlexDivColumn, FlexDivRow, StyledDivisor } from "../styles"
-import InfoCard from "./InfoCard";
-import { settings } from "../settings";
-import { AppTextTranslator } from "../language";
-import MonetaryValue from "./MonetaryValue";
+import { FlexDivColumn, FlexDivRow, StyledDivisor } from "../../styles"
+import InfoCard from "../InfoCard/InfoCard";
+import { settings } from "../../settings";
+import { AppTextTranslator } from "../../language";
+import MonetaryValue from "../MonetaryValue/MonetaryValue";
 
 type BalanceProps = { currentBalance: number, income: number, expenses: number };
 

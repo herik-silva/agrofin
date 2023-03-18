@@ -9,4 +9,10 @@ export interface AppTextTranslator {
         incomeText: string,
         expanseText: string
     }
+    walletCard: {
+        ButtonText: string
+    },
+    walletManage: {
+        TypographyText: string
+    }
 }

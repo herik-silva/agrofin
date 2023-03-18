@@ -1,8 +1,8 @@
 import { Component, ReactNode } from "react";
-import { FlexDivRow, FlexDivColumn, StyledArrowUp, StyledArrowDown } from "../styles";
-import { settings } from "../settings";
-import { AppTextTranslator } from "../language";
-import MonetaryValue from "./MonetaryValue";
+import { FlexDivRow, FlexDivColumn, StyledArrowUp, StyledArrowDown } from "../../styles";
+import { settings } from "../../settings";
+import { AppTextTranslator } from "../../language";
+import MonetaryValue from "../MonetaryValue/MonetaryValue";
 
 type InfoCardProps = {type: "POSITIVE" | "NEGATIVE", value: number};
 

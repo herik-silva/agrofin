@@ -1,11 +1,11 @@
 import {Component, SyntheticEvent, ReactNode} from "react";
-import { AppTextTranslator } from "../language";
-import { settings } from "../settings";
+import { AppTextTranslator } from "../../language";
+import { settings } from "../../settings";
 
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ViewListIcon from '@mui/icons-material/ViewList';
-import { StyledBottomNavigation, StyledBottomNavigationAction } from "../styles";
+import { StyledBottomNavigation, StyledBottomNavigationAction } from "../../styles";
 
 export type NavigationStates = {value: string};
 type NavigationProps = {value: string; onChangeState: Function};

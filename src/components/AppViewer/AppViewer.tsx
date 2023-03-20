@@ -12,6 +12,7 @@ class AppViewer extends Component<{}, AppViewerStates> {
     constructor(props: any){
         super(props);
         this.addNewRecord = this.addNewRecord.bind(this);
+        this.removeRecord = this.removeRecord.bind(this);
 
         const records: WalletRecord[] = []
 
@@ -41,11 +42,24 @@ class AppViewer extends Component<{}, AppViewerStates> {
         this.setState({navigation: {value: newValue} });
     }
 
+    getWalletCopy(): Wallet {
+        return new Wallet(this.state.wallet.name, this.state.wallet.color, this.state.wallet.recordList);
+    }
+
     addNewRecord(newRecord: WalletRecord): void {
         const copyWallet = new Wallet(this.state.wallet.name, this.state.wallet.color, this.state.wallet.recordList);
         copyWallet.addRecord(newRecord);
         this.setState({wallet: copyWallet});
-        this.save(this.state.wallet)
+        this.save(this.state.wallet);
+    }
+
+    removeRecord(id: string): boolean {
+        const copyWallet = new Wallet(this.state.wallet.name, this.state.wallet.color, this.state.wallet.recordList);
+        const result = copyWallet.removeRecord(id);
+
+        this.setState({wallet: copyWallet});
+        this.save(this.state.wallet);
+        return result;
     }
 
     render(): ReactNode {
@@ -54,7 +68,7 @@ class AppViewer extends Component<{}, AppViewerStates> {
                 <Box sx={{ background: "#F2F2F2" }}>
                     <Container sx={{ background: "#FFF", padding: "0px !important"}}>
                         <Navigation value={this.state.navigation.value} onChangeState={this.setNavigationValue}></Navigation>
-                        <HomeView wallet={this.state.wallet} outputNewRecord={this.addNewRecord}></HomeView>
+                        <HomeView wallet={this.state.wallet} outputNewRecord={this.addNewRecord} fnRemoveRecord={this.removeRecord}></HomeView>
                     </Container>
                 </Box>
             );

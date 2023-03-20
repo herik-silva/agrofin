@@ -7,13 +7,14 @@ import { Box, Container } from "@mui/material";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { SpanM } from "../../styles";
 
-export type RecordListViewProps = { recordList: WalletRecord[] };
+export type RecordListViewProps = { recordList: WalletRecord[], fnRemove: Function };
 
 class RecordListView extends Component<RecordListViewProps> {
 
     constructor(props: RecordListViewProps){
         super(props);
     }
+
 
     render(): ReactNode {
         return (
@@ -24,7 +25,7 @@ class RecordListView extends Component<RecordListViewProps> {
                 </Box>
                 <Box className="custom-scroll" sx={{minHeight: window.innerHeight - 450, maxHeight: window.innerHeight - 450, overflow: "hidden", overflowY: "scroll"}}>
                     {this.props.recordList.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()).map((record) => (
-                        <RecordCard key={record.id} record={record}></RecordCard>
+                        <RecordCard key={record.id} record={record} fnRemove={this.props.fnRemove}></RecordCard>
                     ))}
                 </Box>
             </Container>

@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import MonetaryValue from "../MonetaryValue/MonetaryValue";
 import DialogCard from "../DialogCard/DialogCard";
 
-type RecordCardProps = { record: WalletRecord }
+type RecordCardProps = { record: WalletRecord, fnRemove: Function }
 
 class RecordCard extends Component<RecordCardProps> {
 
@@ -32,7 +32,7 @@ class RecordCard extends Component<RecordCardProps> {
                         <span>{this.props.record.description}</span>
                         <MonetaryValue spanSize="P" value={this.props.record.value}></MonetaryValue>
                     </Box>
-                    <DialogCard record={this.props.record} />
+                    <DialogCard record={this.props.record} fnRemove={this.props.fnRemove} />
                 </Box>
             </StyledCard>
         );

@@ -62,4 +62,22 @@ export class Wallet {
             this.balance -= newRecord.value;
         }
     }
+
+    removeRecord(id: string): boolean {
+        const index = this.recordList.findIndex(record => record.id === id);
+
+        if(index === -1){
+            return false;
+        }
+
+        if(this.recordList[index].type === "POSITIVE"){
+            this.balance -= this.recordList[index].value;
+        }
+        else{
+            this.balance += this.recordList[index].value;
+        }
+
+        this.recordList.splice(index, 1);
+        return true;
+    }
 }

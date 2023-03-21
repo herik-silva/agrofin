@@ -1,6 +1,6 @@
 {
   "short_name": "Agrofin",
-  "name": "Um aplicativo financeiro para agricultores.",
+  "name": "Gerenciamento de contas digital",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +8,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#FFF",
+  "background_color": "#D3D3D3"
 }

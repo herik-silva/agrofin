@@ -14,7 +14,7 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
     constructor(props: any){
         super(props);
 
-        this.state = { description: "", value: "", date: "", recordType: "POSITIVE" };
+        this.state = { description: "", value: "", date: new Date().toISOString().slice(0, 10), recordType: "POSITIVE" };
 
         this.selectRecordType = this.selectRecordType.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +38,9 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
 
     handleSubmit(event: SyntheticEvent): void {
         event.preventDefault();
-        const newRecord = new WalletRecord(crypto.randomUUID(), this.state.description, parseFloat(this.state.value), this.state.recordType, new Date(this.state.date));
+        const replacedDate = this.state.date.substring(0);
+        console.log(replacedDate.replaceAll("-", "/"));
+        const newRecord = new WalletRecord(crypto.randomUUID(), this.state.description, parseFloat(this.state.value), this.state.recordType, new Date(replacedDate.replaceAll("-", "/")));
         
         this.props.outputAddFn(newRecord);
         document.getElementById("close")?.click();
@@ -56,6 +58,7 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
                             value={this.state.description}
                             onChange={(event) => this.setDescription(event.target.value)}
                             required={true}
+                            autoComplete="off"
                         />
                     </FormControl>
                     <FormControl sx={{ m: 1 }} variant="filled">
@@ -66,6 +69,7 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
                             value={this.state.value}
                             onChange={(event) => this.setValue(event.target.value)}
                             required={true}
+                            autoComplete="off"
                         />
                     </FormControl>
                     <FormControl sx={{ m: 1 }} variant="filled">

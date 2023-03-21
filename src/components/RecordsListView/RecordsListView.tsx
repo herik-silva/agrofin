@@ -23,7 +23,7 @@ class RecordListView extends Component<RecordListViewProps> {
                     <FormatListBulletedIcon sx={{ marginRight: 2 }} />
                     <SpanM>Ultimos Registros</SpanM>
                 </Box>
-                <Box className="custom-scroll" sx={{minHeight: window.innerHeight - 450, maxHeight: window.innerHeight - 450, overflow: "hidden", overflowY: "scroll"}}>
+                <Box className="custom-scroll" sx={{minHeight: window.innerHeight - 450, maxHeight: window.innerHeight - 450, overflow: "hidden", overflowY: "scroll", padding: "0 5px "}}>
                     {this.props.recordList.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()).map((record) => (
                         <RecordCard key={record.id} record={record} fnRemove={this.props.fnRemove}></RecordCard>
                     ))}

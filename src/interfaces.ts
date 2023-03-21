@@ -63,11 +63,11 @@ export class Wallet {
         }
     }
 
-    removeRecord(id: string): boolean {
+    removeRecord(id: string): {removed: boolean, record: WalletRecord | undefined} {
         const index = this.recordList.findIndex(record => record.id === id);
 
         if(index === -1){
-            return false;
+            return {removed: false, record: undefined};
         }
 
         if(this.recordList[index].type === "POSITIVE"){
@@ -77,7 +77,9 @@ export class Wallet {
             this.balance += this.recordList[index].value;
         }
 
+        const recordToRemove = this.recordList[index];
+        
         this.recordList.splice(index, 1);
-        return true;
+        return {removed: true, record: recordToRemove};
     }
 }

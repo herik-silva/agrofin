@@ -36,11 +36,13 @@ class Navigation extends Component<NavigationProps> {
                     label={language.navigation.recordsText}
                     value="details"
                     icon={<ViewListIcon />}
+                    onClick={() => alert("Registros em Construção")}
                 />
                 <StyledBottomNavigationAction
                     label={language.navigation.settingsText}
                     value="options"
                     icon={<SettingsIcon />}
+                    onClick={() => alert("Opções em Construção")}
                 />
             </StyledBottomNavigation>
         );

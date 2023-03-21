@@ -3,9 +3,10 @@ import Navigation, { NavigationStates } from "../Navigation/Navigation";
 import { Routes, Route, Link } from "react-router-dom";
 import { Wallet, WalletRecord } from "../../interfaces";
 import HomeView from "../HomeView/HomeView";
-import { Box, Container } from "@mui/material";
-
-type AppViewerStates = { navigation: NavigationStates, wallet: Wallet  };
+import { AlertColor, Box, Container } from "@mui/material";
+import SnackbarComponent from "../SnackbarComponent/SnackbarComponent";
+type SnackbarComponentStates = { open: boolean, message: string, severity: AlertColor };
+type AppViewerStates = { navigation: NavigationStates, wallet: Wallet, snackbar: SnackbarComponentStates };
 
 class AppViewer extends Component<{}, AppViewerStates> {
 
@@ -16,8 +17,14 @@ class AppViewer extends Component<{}, AppViewerStates> {
 
         const records: WalletRecord[] = []
 
-        this.state = {navigation: {value: "geral"}, wallet: new Wallet("Conta A", "#7F4F82", records) };
+        this.state = {
+            navigation: {value: "geral"},
+            wallet: new Wallet("Conta A", "#7F4F82", records),
+            snackbar: {message: "", open: false, severity: "success"}
+        };
+
         this.setNavigationValue = this.setNavigationValue.bind(this);
+        this.onClose = this.onClose.bind(this);
     }
 
     save(wallet: Wallet): void {
@@ -29,7 +36,6 @@ class AppViewer extends Component<{}, AppViewerStates> {
         if(wallet !== null){
             const walletData = JSON.parse(wallet) as Wallet;
             const loadedWalletData = new Wallet(walletData.name, walletData.color, walletData.recordList);
-            console.log(walletData);
             this.setState({wallet: loadedWalletData});
         }
     }
@@ -42,14 +48,19 @@ class AppViewer extends Component<{}, AppViewerStates> {
         this.setState({navigation: {value: newValue} });
     }
 
-    getWalletCopy(): Wallet {
-        return new Wallet(this.state.wallet.name, this.state.wallet.color, this.state.wallet.recordList);
+    onClose(event?: React.SyntheticEvent | Event, reason?: string) {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        this.setState({snackbar: {open: false, message: "", severity: "success"}});
     }
 
     addNewRecord(newRecord: WalletRecord): void {
         const copyWallet = new Wallet(this.state.wallet.name, this.state.wallet.color, this.state.wallet.recordList);
         copyWallet.addRecord(newRecord);
-        this.setState({wallet: copyWallet});
+        
+        this.setState({wallet: copyWallet, snackbar: {open: true, message: `O Registro ${newRecord.description} foi adicionado!`, severity: "success"}});
         this.save(this.state.wallet);
     }
 
@@ -57,27 +68,28 @@ class AppViewer extends Component<{}, AppViewerStates> {
         const copyWallet = new Wallet(this.state.wallet.name, this.state.wallet.color, this.state.wallet.recordList);
         const result = copyWallet.removeRecord(id);
 
-        this.setState({wallet: copyWallet});
-        this.save(this.state.wallet);
-        return result;
+        if(result.removed){
+            this.setState({wallet: copyWallet, snackbar: {open: true, message: `O Registro ${result.record?.description} foi removido!`, severity: "success"}});
+            this.save(this.state.wallet);
+
+            return true;
+        }
+
+        this.setState({snackbar: {open: true, message: `Não foi possível remover o registro ${result.record?.description}.`, severity: "error"}});
+
+        return false;
     }
 
     render(): ReactNode {
-        if(window.innerWidth > 0){
-            return (
-                <Box sx={{ background: "#F2F2F2" }}>
-                    <Container sx={{ background: "#FFF", padding: "0px !important"}}>
-                        <Navigation value={this.state.navigation.value} onChangeState={this.setNavigationValue}></Navigation>
-                        <HomeView wallet={this.state.wallet} outputNewRecord={this.addNewRecord} fnRemoveRecord={this.removeRecord}></HomeView>
-                    </Container>
-                </Box>
-            );
-        }
-        else{
-            return (
-                <h1>Por favor, experimente o aplicativo pelo celular.</h1>
-            );
-        }
+        return (
+            <Box sx={{ background: "#F2F2F2" }}>
+                <Container sx={{ background: "#FFF", padding: "0px !important"}}>
+                    <Navigation value={this.state.navigation.value} onChangeState={this.setNavigationValue}></Navigation>
+                    <HomeView wallet={this.state.wallet} outputNewRecord={this.addNewRecord} fnRemoveRecord={this.removeRecord}></HomeView>
+                    <SnackbarComponent onClose={this.onClose} open={this.state.snackbar.open} severity={this.state.snackbar.severity} message={this.state.snackbar.message}></SnackbarComponent>
+                </Container>
+            </Box>
+        );
     }
 }
 

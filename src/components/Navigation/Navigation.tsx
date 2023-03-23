@@ -29,7 +29,7 @@ class Navigation extends Component<NavigationProps> {
             <StyledBottomNavigation sx={{ height: 45 }} value={this.props.value} onChange={this.handleChange}>
                 <StyledBottomNavigationAction
                     label={language.navigation.homeText}
-                    value="geral"
+                    value="home"
                     icon={<HomeIcon />}
                 />
                 <StyledBottomNavigationAction
@@ -40,9 +40,8 @@ class Navigation extends Component<NavigationProps> {
                 />
                 <StyledBottomNavigationAction
                     label={language.navigation.settingsText}
-                    value="options"
+                    value="settings"
                     icon={<SettingsIcon />}
-                    onClick={() => alert("Opções em Construção")}
                 />
             </StyledBottomNavigation>
         );

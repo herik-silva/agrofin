@@ -20,19 +20,24 @@ export class Wallet {
     name: string;
     balance: number;
     recordList: WalletRecord[];
+    removedRecordList: WalletRecord[];
     color: string;
 
-    constructor(name: string, color: string, recordList: WalletRecord[] = []){
+    constructor(name: string, color: string, recordList: WalletRecord[] = [], removedRecordList: WalletRecord[] = []){
         this.name = name;
         this.color = color;
 
         recordList.forEach(record => {
             record.created_at = new Date(record.created_at);
-        })
+        });
+
+        removedRecordList.forEach(record => {
+            record.created_at = new Date(record.created_at);
+        });
 
         this.recordList = recordList;
 
-        this.recordList = recordList;
+        this.removedRecordList = removedRecordList;
 
         // Calcula o total de acordo com os registros
         this.balance = this.getTotalBalance();
@@ -79,6 +84,7 @@ export class Wallet {
 
         const recordToRemove = this.recordList[index];
         
+        this.removedRecordList.push(recordToRemove);
         this.recordList.splice(index, 1);
         return {removed: true, record: recordToRemove};
     }

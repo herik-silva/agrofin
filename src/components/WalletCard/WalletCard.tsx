@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import MonetaryValue from "../MonetaryValue/MonetaryValue";
 import { StyledCard, StyledButton } from "../../styles";
 import AddIcon from '@mui/icons-material/Add';
-import IconButton from '@mui/material/IconButton';
 import { settings } from "../../settings";
 import { AppTextTranslator } from "../../language";
 import DialogComponent from "../DialogComponent/DialogComponent";
@@ -45,9 +44,11 @@ class WalletCard extends Component<WalletCardProps> {
                     </Box>
                 </CardContent>
                 <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-                    <DialogComponent 
+                    <DialogComponent
+                        btnActionText="Novo Registro"
+                        title="Novo Registro"
+                        icon={<AddIcon />}
                         component={<NewRecordForm outputAddFn={this.outputNewRecord}/>}
-                        closeComponent={()=>{console.log("FECHA COMPONENTE")}}
                     ></DialogComponent>
                 </CardActions>
             </StyledCard>

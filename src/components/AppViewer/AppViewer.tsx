@@ -35,10 +35,10 @@ class AppViewer extends Component<{}, AppViewerStates> {
         this.setPage = this.setPage.bind(this);
         this.setWallet = this.setWallet.bind(this);
         this.clearAllRecords = this.clearAllRecords.bind(this);
+        this.outputUpdate = this.outputUpdate.bind(this);
     }
 
     save(wallet: Wallet): void {
-        console.log(wallet)
         localStorage.setItem("wallet", JSON.stringify(wallet));
     }
 
@@ -56,7 +56,6 @@ class AppViewer extends Component<{}, AppViewerStates> {
     }
 
     setNavigationValue(newValue: string) {
-        console.log(newValue);
         this.setState({navigation: {value: newValue} });
     }
 
@@ -126,7 +125,6 @@ class AppViewer extends Component<{}, AppViewerStates> {
     }
 
     undoAction(): void {
-        console.log(this.state.lastAction);
         if(this.state.lastAction){
             switch(this.state.lastAction){
                 case "add":
@@ -188,9 +186,22 @@ class AppViewer extends Component<{}, AppViewerStates> {
             }})
         });
     }
+
+    outputUpdate(record: WalletRecord): void {
+        const copyWallet = new Wallet(this.state.wallet.name, this.state.wallet.color, this.state.wallet.recordList, this.state.wallet.removedRecordList);
+        copyWallet.updateRecord(record);
+        this.setState({wallet: copyWallet}, ()=>{
+            // this.save(this.state.wallet);
+            this.setState({snackbar: {
+                message: `Registro atualizado!`,
+                open: true,
+                severity: "success"
+            }});
+        });
+    }
     
     showHome(): ReactNode {
-        return <HomeView wallet={this.state.wallet} outputNewRecord={this.addNewRecord} fnRemoveRecord={this.removeRecord}></HomeView>
+        return <HomeView wallet={this.state.wallet} outputNewRecord={this.addNewRecord} fnRemoveRecord={this.removeRecord} outputUpdate={this.outputUpdate}></HomeView>
     }
 
     showSettings(): ReactNode {

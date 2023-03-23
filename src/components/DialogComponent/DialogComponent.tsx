@@ -1,12 +1,12 @@
 import { Component, ReactNode, forwardRef} from "react";
 import Dialog from '@mui/material/Dialog';
 import { StyledButton } from "../../styles";
-import AddIcon from '@mui/icons-material/Add';
 import { AppBar, Button, IconButton, Slide, Toolbar, Typography } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { TransitionProps } from '@mui/material/transitions';
+import { ColorTypes } from "../SettingsComponent/SettingsComponent";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -18,7 +18,7 @@ const Transition = forwardRef(function Transition(
 });
 
 
-export type DialogComponentProps = { component: ReactNode, closeComponent: Function };
+export type DialogComponentProps = { component: ReactNode, title: string, btnActionText: string, icon?: ReactNode, btnColor?: ColorTypes };
 type DialogState = { open: boolean };
 
 class DialogComponent extends Component<DialogComponentProps, DialogState> {
@@ -37,9 +37,48 @@ class DialogComponent extends Component<DialogComponentProps, DialogState> {
         this.setState({open: false});
     };
 
+    selectButton(): ReactNode {
+        if(this.props.icon && this.props.btnColor === undefined){
+            console.log("ICONE");
+            return (
+                <StyledButton startIcon={this.props.icon} size="small" variant="contained" color="success" fontfill="#FFF" bgfill="#5DAD5E" onClick={() => { this.handleOpen() }}>
+                    {this.props.btnActionText}
+                </StyledButton>
+            );
+        }
+
+        if(this.props.btnColor && this.props.icon === undefined){
+            console.log("COR");
+            return (
+                <Button size="small" variant="contained" color={this.props.btnColor} onClick={() => { this.handleOpen() }}>
+                    {this.props.btnActionText}
+                </Button>
+            );
+        }
+
+        if(this.props.btnColor === undefined && this.props.icon === undefined){
+            console.log("NENHUM");
+
+            return (
+                <Button size="small" variant="contained" color="primary" onClick={() => { this.handleOpen() }}>
+                    {this.props.btnActionText}
+                </Button>
+            );
+        }
+
+        if(this.props.btnColor && this.props.icon){
+            console.log("ICONE E COR");
+            return (
+                <Button size="small" variant="contained" color={this.props.btnColor} startIcon={this.props.icon} onClick={() => { this.handleOpen() }}>
+                    {this.props.btnActionText}
+                </Button>
+            );
+        }
+
+    }
+
     render(): ReactNode {
         const fullScreen = window.innerWidth < 960;
-        this.props.closeComponent();
 
         return (
             <div>
@@ -55,7 +94,7 @@ class DialogComponent extends Component<DialogComponentProps, DialogState> {
                                 <ArrowBackIcon />
                             </IconButton>
                             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                                Novo Registro
+                                {this.props.title}
                             </Typography>
                             <IconButton id="close"
                                 edge="start"
@@ -68,11 +107,8 @@ class DialogComponent extends Component<DialogComponentProps, DialogState> {
                         </Toolbar>
                     </AppBar>
                     {this.props.component}
-                    {/* <Button variant="contained" size="large" color="success" sx={{ borderRadius: 0, background: "#5DAD5E"}}>CONCLUIR</Button> */}
                 </Dialog>
-                <StyledButton startIcon={<AddIcon />} size="small" variant="contained" color="success" fontfill="#FFF" bgfill="#5DAD5E" onClick={()=>{this.handleOpen()}}>
-                    Novo Registro
-                </StyledButton>
+                {this.selectButton()}
             </div>
         );
     }

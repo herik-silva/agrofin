@@ -88,4 +88,31 @@ export class Wallet {
         this.recordList.splice(index, 1);
         return {removed: true, record: recordToRemove};
     }
+
+    updateRecord(record: WalletRecord): void {
+        console.log(record);
+        const recordIndex = this.recordList.findIndex(selectedRecord => selectedRecord.id === record.id);
+
+        if(recordIndex === -1){
+            console.log("INVALIDO!")
+            return;
+        }
+
+        if(this.recordList[recordIndex].type === "POSITIVE"){
+            this.balance -= this.recordList[recordIndex].value;
+        }
+        else{
+            this.balance += this.recordList[recordIndex].value;
+        }
+
+        if(record.type === "POSITIVE"){
+            this.balance += record.value;
+        }
+        else{
+            this.balance -= record.value;
+        }
+
+        this.recordList[recordIndex] = record;
+        console.log(this.recordList);
+    }
 }

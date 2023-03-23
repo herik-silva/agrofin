@@ -6,7 +6,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import { RecordType, WalletRecord } from "../../interfaces";
 import { StyledForm } from "../../styles";
 
-export type NewRecordFormProps = { outputAddFn: Function };
+export type NewRecordFormProps = { outputAddFn?: Function, outputUpdateFn?: Function, record?: WalletRecord, btnVariant?:  "contained" | "outlined"};
 type NewRecordFormState = { description: string, value: string, date: string, recordType: RecordType };
 
 class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
@@ -14,7 +14,13 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
     constructor(props: any){
         super(props);
 
-        this.state = { description: "", value: "", date: new Date().toISOString().slice(0, 10), recordType: "POSITIVE" };
+        console.log(this.props.record?.id);
+        this.state = {
+            description: this.props.record?.description || "",
+            value: this.props.record?.value.toString() || "",
+            date: this.props.record?.created_at.toISOString().slice(0, 10) || new Date().toISOString().slice(0, 10),
+            recordType: this.props.record?.type || "POSITIVE"
+        };
 
         this.selectRecordType = this.selectRecordType.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,10 +45,17 @@ class NewRecordForm extends Component<NewRecordFormProps, NewRecordFormState> {
     handleSubmit(event: SyntheticEvent): void {
         event.preventDefault();
         const replacedDate = this.state.date.substring(0);
-        console.log(replacedDate.replaceAll("-", "/"));
-        const newRecord = new WalletRecord(crypto.randomUUID(), this.state.description, parseFloat(this.state.value), this.state.recordType, new Date(replacedDate.replaceAll("-", "/")));
-        
-        this.props.outputAddFn(newRecord);
+        const newRecord = new WalletRecord(this.props.record?.id || crypto.randomUUID(), this.state.description, parseFloat(this.state.value), this.state.recordType, new Date(replacedDate.replaceAll("-", "/")));
+
+        if(this.props.record === undefined){
+            if(this.props.outputAddFn)
+                this.props.outputAddFn(newRecord);
+        }
+        else{
+            if(this.props.outputUpdateFn)
+                this.props.outputUpdateFn(newRecord);
+        }
+
         document.getElementById("close")?.click();
     }
 

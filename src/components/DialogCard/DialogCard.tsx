@@ -2,11 +2,14 @@ import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogAc
 import { Component, ReactNode } from "react";
 import { WalletRecord } from "../../interfaces";
 import InfoIcon from '@mui/icons-material/Info';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import MonetaryValue from "../MonetaryValue/MonetaryValue";
 import FormatService from "../../services/FormatService";
 import { StyledArrowDown, StyledArrowUp } from "../../styles";
+import DialogComponent from "../DialogComponent/DialogComponent";
+import NewRecordForm from "../NewRecordForm/NewRecordForm";
 
-type DialogCardProps = { record: WalletRecord, fnRemove: Function };
+type DialogCardProps = { record: WalletRecord, fnRemove: Function, outputUpdate: Function };
 type DialogCardStates = { open: boolean, confirmedDeleted: boolean, txtButtonDelete: string }
 
 class DialogCard extends Component<DialogCardProps, DialogCardStates> {
@@ -77,9 +80,13 @@ class DialogCard extends Component<DialogCardProps, DialogCardStates> {
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button autoFocus onClick={this.handleClose}>
-                                Editar
-                            </Button>
+                            <DialogComponent
+                                title="Atualizar Registro"
+                                btnActionText="Alterar"
+                                icon={<ModeEditIcon />}
+                                btnColor="primary"
+                                component={<NewRecordForm outputUpdateFn={this.props.outputUpdate} record={this.props.record} />}
+                            ></DialogComponent>
                             <Button color="error" onClick={this.handleRemove}>
                                 {this.state.txtButtonDelete}
                             </Button>

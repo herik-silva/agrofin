@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, 
 import { ChangeEvent, Component, ReactNode, SyntheticEvent } from "react";
 import ExpandMoreIcon  from "@mui/icons-material/ExpandMore";
 
-type ColorTypes = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+export type ColorTypes = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 export type SettingsProps = { walletName: string, walletColor: string, changeWalletFn: Function, clearAllRecords: Function }
 type SettingsState = { walletName: string, walletColor: string, expanded: string, error: boolean, color: ColorTypes, btnClearText: string };
 

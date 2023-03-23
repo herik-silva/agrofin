@@ -7,12 +7,21 @@ import { Box, Container } from "@mui/material";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { SpanM } from "../../styles";
 
-export type RecordListViewProps = { recordList: WalletRecord[], fnRemove: Function };
+export type RecordListViewProps = { recordList: WalletRecord[], fnRemove: Function, outputUpdate: Function };
+type RecordListViewStates = { resize: boolean };
 
-class RecordListView extends Component<RecordListViewProps> {
+class RecordListView extends Component<RecordListViewProps, RecordListViewStates> {
 
     constructor(props: RecordListViewProps){
         super(props);
+
+        this.state = { resize: false };
+    }
+
+    componentDidMount(): void {
+        window.addEventListener("resize", ()=>{
+            this.setState({resize: !this.state.resize});
+        })
     }
 
 
@@ -23,9 +32,9 @@ class RecordListView extends Component<RecordListViewProps> {
                     <FormatListBulletedIcon sx={{ marginRight: 2 }} />
                     <SpanM>Ultimos Registros</SpanM>
                 </Box>
-                <Box className="custom-scroll" sx={{minHeight: window.innerHeight - 450, maxHeight: window.innerHeight - 450, overflow: "hidden", overflowY: "scroll", padding: "0 5px "}}>
+                <Box id="resize" className="custom-scroll" sx={{minHeight: window.innerHeight - 450, maxHeight: window.innerHeight - 450, overflow: "hidden", overflowY: "scroll", padding: "0 5px "}}>
                     {this.props.recordList.sort((a, b) => b.created_at.getTime() - a.created_at.getTime()).map((record) => (
-                        <RecordCard key={record.id} record={record} fnRemove={this.props.fnRemove}></RecordCard>
+                        <RecordCard key={record.id} record={record} fnRemove={this.props.fnRemove} outputUpdate={this.props.outputUpdate}></RecordCard>
                     ))}
                 </Box>
             </Container>

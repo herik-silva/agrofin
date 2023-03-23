@@ -5,7 +5,7 @@ import WalletManage from "../WalletManage/WalletManage";
 import RecordListView from "../RecordsListView/RecordsListView";
 import Box from "@mui/material/Box";
 
-export type HomeViewProps = { wallet: Wallet, outputNewRecord: Function, fnRemoveRecord: Function }
+export type HomeViewProps = { wallet: Wallet, outputNewRecord: Function, fnRemoveRecord: Function, outputUpdate: Function }
 
 class HomeView extends Component<HomeViewProps> {
 
@@ -28,7 +28,7 @@ class HomeView extends Component<HomeViewProps> {
                     <WalletManage walletBalance={this.props.wallet.balance} walletName={this.props.wallet.name} walletColor={this.props.wallet.color} outputNewRecord={this.outputNewRecord}></WalletManage>
                 </Box>
                 <Box sx={{ margin: "30px 0 0 0" }}>
-                    <RecordListView recordList={this.props.wallet.recordList} fnRemove={this.props.fnRemoveRecord}></RecordListView>
+                    <RecordListView recordList={this.props.wallet.recordList} fnRemove={this.props.fnRemoveRecord} outputUpdate={this.props.outputUpdate}></RecordListView>
                 </Box>
             </Box>
         );

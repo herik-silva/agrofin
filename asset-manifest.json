@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/agrofin/static/css/main.41f04d74.css",
-    "main.js": "/agrofin/static/js/main.81f36203.js",
+    "main.js": "/agrofin/static/js/main.f0e241af.js",
     "static/js/787.9243f888.chunk.js": "/agrofin/static/js/787.9243f888.chunk.js",
     "index.html": "/agrofin/index.html",
     "main.41f04d74.css.map": "/agrofin/static/css/main.41f04d74.css.map",
-    "main.81f36203.js.map": "/agrofin/static/js/main.81f36203.js.map",
+    "main.f0e241af.js.map": "/agrofin/static/js/main.f0e241af.js.map",
     "787.9243f888.chunk.js.map": "/agrofin/static/js/787.9243f888.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41f04d74.css",
-    "static/js/main.81f36203.js"
+    "static/js/main.f0e241af.js"
   ]
 }

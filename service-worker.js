@@ -1,6 +1,6 @@
 var CACHE_NAME = 'my-pwa-cache-v1';
 var urlsToCache = [
-  '/',
+  '/agrofin',
   '/index.html',
   '/styles.css',
   '/script.js',

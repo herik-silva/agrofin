@@ -1,10 +1,10 @@
 var CACHE_NAME = 'my-pwa-cache-v1';
 var urlsToCache = [
-  'agrofin/',
-  'agrofin/agrofin/index.html',
-  'agrofin/styles.css',
-  'agrofin/script.js',
-  'agrofin/images/logo.png'
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/script.js',
+  '/images/logo.png'
 ];
 
 self.addEventListener('install', function(event) {

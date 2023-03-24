@@ -3,10 +3,10 @@ var urlsToCache = [
   '/agrofin',
   '/agrofin/index.html',
   '/agrofin/index.js',
-  '/agrofin/images/64x64.png',
-  '/agrofin/images/192x192.png',
-  '/agrofin/images/512x512.png',
-  '/agrofin/images/favicon.ico',
+  '/agrofin/64x64.png',
+  '/agrofin/192x192.png',
+  '/agrofin/512x512.png',
+  '/agrofin/favicon.ico',
 ];
 
 self.addEventListener('install', function(event) {

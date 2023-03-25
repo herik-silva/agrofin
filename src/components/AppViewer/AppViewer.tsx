@@ -22,7 +22,7 @@ class AppViewer extends Component<{}, AppViewerStates> {
         const records: WalletRecord[] = []
 
         this.state = {
-            navigation: {value: "geral"},
+            navigation: {value: "home"},
             wallet: new Wallet("Conta A", "#7F4F82", records),
             snackbar: {message: "", open: false, severity: "success"},
             lastAction: undefined,

@@ -1,6 +1,8 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, Radio, TextField, Typography } from "@mui/material";
 import { ChangeEvent, Component, ReactNode, SyntheticEvent } from "react";
 import ExpandMoreIcon  from "@mui/icons-material/ExpandMore";
+import EmailIcon from '@mui/icons-material/Email';
+import { Link } from "react-router-dom";
 
 export type ColorTypes = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 export type SettingsProps = { walletName: string, walletColor: string, changeWalletFn: Function, clearAllRecords: Function }
@@ -147,6 +149,28 @@ class SettingsComponent extends Component<SettingsProps, SettingsState> {
                             <h4>Excluir todos os registros</h4>
                             <Button variant="contained" color="error" onClick={this.clearAllRecords}>{this.state.btnClearText}</Button>
                         </Box>
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion expanded={this.state.expanded === "panel2"} onChange={()=>this.handleChange("panel2")}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel2a-content"
+                        id="panel2a-header"
+                    >
+                        <Typography>Equipe</Typography>
+                        <Typography sx={{ marginLeft: 2, color: 'text.secondary' }}>Um pouco sobre nós</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <span>A equipe tem como objetivo desenvolver soluções que sejam simples e intuitivas para os usuários. Combinando o conhecimento técnico em diferentes áreas, nossa equipe procura criar soluções que atendam às necessidades do público de forma clara e eficiente. Acreditamos que a simplicidade é a chave para a eficácia de uma solução, e estamos comprometidos em garantir que nossos produtos sejam acessíveis e fáceis de usar para todos.</span>
+                        <h4>A equipe é composta por:</h4>
+                        <ul>
+                            <li>Cristiane Aparecida Rodrigues</li>
+                            <li>Hérik Aparecida Ramos da Silva</li>
+                            <li>Sansão Augusto Germano</li>
+                        </ul>
+                        <Link to={"mailto:contato.easytechmg@gmail.com"}>
+                            <Button startIcon={<EmailIcon/>}>E-mail</Button>
+                        </Link>
                     </AccordionDetails>
                 </Accordion>
             </Container>

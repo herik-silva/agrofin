@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/agrofin/static/css/main.41f04d74.css",
-    "main.js": "/agrofin/static/js/main.5a65ce9f.js",
-    "static/js/787.9243f888.chunk.js": "/agrofin/static/js/787.9243f888.chunk.js",
-    "index.html": "/agrofin/index.html",
-    "main.41f04d74.css.map": "/agrofin/static/css/main.41f04d74.css.map",
-    "main.5a65ce9f.js.map": "/agrofin/static/js/main.5a65ce9f.js.map",
-    "787.9243f888.chunk.js.map": "/agrofin/static/js/787.9243f888.chunk.js.map"
+    "main.css": "/minha-carteira/static/css/main.41f04d74.css",
+    "main.js": "/minha-carteira/static/js/main.97942941.js",
+    "static/js/787.1e6a4625.chunk.js": "/minha-carteira/static/js/787.1e6a4625.chunk.js",
+    "index.html": "/minha-carteira/index.html",
+    "main.41f04d74.css.map": "/minha-carteira/static/css/main.41f04d74.css.map",
+    "main.97942941.js.map": "/minha-carteira/static/js/main.97942941.js.map",
+    "787.1e6a4625.chunk.js.map": "/minha-carteira/static/js/787.1e6a4625.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41f04d74.css",
-    "static/js/main.5a65ce9f.js"
+    "static/js/main.97942941.js"
   ]
 }
